@@ -13,6 +13,7 @@ import { cn } from "@/utils";
 import { useTranslate } from "@/utils/i18n";
 import { convertVisibilityToString } from "@/utils/memo";
 import { isSuperUser } from "@/utils/user";
+import { tagToColor } from "./ConstellationView/utils";
 import MemoActionMenu from "./MemoActionMenu";
 import MemoContent from "./MemoContent";
 import MemoEditor from "./MemoEditor";
@@ -201,7 +202,7 @@ const MemoView: React.FC<Props> = (props: Props) => {
               )}
               {props.showPinned && memo.pinned && (
                 <Tooltip title={t("common.unpin")} placement="top">
-                  <span className="cursor-pointer">
+                  <span className="cursor-pointer memo-pinned-sparkle">
                     <BookmarkIcon className="w-4 h-auto text-amber-500" onClick={onPinIconClick} />
                   </span>
                 </Tooltip>
@@ -234,6 +235,19 @@ const MemoView: React.FC<Props> = (props: Props) => {
             <MemoResourceListView resources={memo.resources} />
             <MemoRelationListView memo={memo} relations={referencedMemos} parentPage={parentPage} />
             <MemoReactionistView memo={memo} reactions={memo.reactions} />
+            {memo.tags && memo.tags.length > 0 && (
+              <div className="w-full flex flex-wrap gap-1.5">
+                {memo.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="inline-flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400"
+                  >
+                    <span className="tag-constellation-dot" style={{ backgroundColor: tagToColor(tag) }} />
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
           {nsfw && !showNSFWContent && (
             <>

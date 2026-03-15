@@ -38,6 +38,7 @@
     "description": "Description",
     "edit": "Edit",
     "email": "Email",
+    "constellation": "Constellation",
     "expand": "Expand",
     "explore": "Explore",
     "file": "File",
@@ -164,7 +165,8 @@
       "public": "Public"
     },
     "list": "List",
-    "masonry": "Masonry"
+    "masonry": "Masonry",
+    "constellation": "Constellation"
   },
   "message": {
     "archived-successfully": "Archived successfully",

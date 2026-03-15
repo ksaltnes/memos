@@ -12,6 +12,7 @@ import { viewStore } from "@/store/v2";
 import { Direction, State } from "@/types/proto/api/v1/common";
 import { Memo } from "@/types/proto/api/v1/memo_service";
 import { useTranslate } from "@/utils/i18n";
+import ConstellationView from "../ConstellationView";
 import Empty from "../Empty";
 import MasonryView from "../MasonryView";
 import MemoEditor from "../MemoEditor";
@@ -71,14 +72,21 @@ const PagedMemoList = observer((props: Props) => {
     refreshList();
   }, [props.owner, props.state, props.direction, props.filter, props.oldFilter, props.pageSize]);
 
+  const isConstellation = viewStore.state.layout === "CONSTELLATION";
+
   const children = (
     <div className="flex flex-col justify-start items-start w-full max-w-full">
-      <MasonryView
-        memoList={sortedMemoList}
-        renderer={props.renderer}
-        prefixElement={showMemoEditor ? <MemoEditor className="mb-2" cacheKey="home-memo-editor" /> : undefined}
-        listMode={viewStore.state.layout === "LIST"}
-      />
+      {showMemoEditor && isConstellation && <MemoEditor className="mb-2" cacheKey="home-memo-editor" />}
+      {isConstellation ? (
+        <ConstellationView memos={sortedMemoList} className="w-full min-h-[500px] h-[60vh]" />
+      ) : (
+        <MasonryView
+          memoList={sortedMemoList}
+          renderer={props.renderer}
+          prefixElement={showMemoEditor ? <MemoEditor className="mb-2" cacheKey="home-memo-editor" /> : undefined}
+          listMode={viewStore.state.layout === "LIST"}
+        />
+      )}
       {state.isRequesting && (
         <div className="w-full flex flex-row justify-center items-center my-4">
           <LoaderIcon className="animate-spin text-zinc-500" />

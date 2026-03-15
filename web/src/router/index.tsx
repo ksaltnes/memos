@@ -7,6 +7,7 @@ import Home from "@/pages/Home";
 import Loading from "@/pages/Loading";
 
 const AdminSignIn = lazy(() => import("@/pages/AdminSignIn"));
+const Constellation = lazy(() => import("@/pages/Constellation"));
 const Archived = lazy(() => import("@/pages/Archived"));
 const AuthCallback = lazy(() => import("@/pages/AuthCallback"));
 const Explore = lazy(() => import("@/pages/Explore"));
@@ -28,6 +29,7 @@ export enum Routes {
   ARCHIVED = "/archived",
   SETTING = "/setting",
   EXPLORE = "/explore",
+  CONSTELLATION = "/constellation",
   AUTH = "/auth",
 }
 
@@ -89,6 +91,14 @@ const router = createBrowserRouter([
                 element: (
                   <Suspense fallback={<Loading />}>
                     <Explore />
+                  </Suspense>
+                ),
+              },
+              {
+                path: Routes.CONSTELLATION,
+                element: (
+                  <Suspense fallback={<Loading />}>
+                    <Constellation />
                   </Suspense>
                 ),
               },

@@ -1,5 +1,5 @@
 import { last } from "lodash-es";
-import { Globe2Icon, HomeIcon } from "lucide-react";
+import { Globe2Icon, HomeIcon, SparklesIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { matchPath, NavLink, useLocation } from "react-router-dom";
 import useDebounce from "react-use/lib/useDebounce";
@@ -38,6 +38,12 @@ const HomeSidebar = observer((props: Props) => {
     title: t("common.home"),
     icon: <HomeIcon className="w-4 h-auto opacity-70 shrink-0" />,
   };
+  const constellationNavLink: NavLinkItem = {
+    id: "header-constellation",
+    path: Routes.CONSTELLATION,
+    title: t("common.constellation"),
+    icon: <SparklesIcon className="w-4 h-auto opacity-70 shrink-0" />,
+  };
   const exploreNavLink: NavLinkItem = {
     id: "header-explore",
     path: Routes.EXPLORE,
@@ -45,7 +51,7 @@ const HomeSidebar = observer((props: Props) => {
     icon: <Globe2Icon className="w-4 h-auto opacity-70 shrink-0" />,
   };
 
-  const navLinks: NavLinkItem[] = currentUser ? [homeNavLink, exploreNavLink] : [exploreNavLink];
+  const navLinks: NavLinkItem[] = currentUser ? [homeNavLink, constellationNavLink, exploreNavLink] : [exploreNavLink];
 
   useDebounce(
     async () => {
