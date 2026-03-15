@@ -43,12 +43,13 @@ const MemoDisplaySettingMenu = observer(({ className }: Props) => {
               value={viewStore.state.layout}
               onChange={(_, value) =>
                 viewStore.state.setPartial({
-                  layout: value as "LIST" | "MASONRY",
+                  layout: value as "LIST" | "MASONRY" | "CONSTELLATION",
                 })
               }
             >
               <Option value={"LIST"}>{t("memo.list")}</Option>
               <Option value={"MASONRY"}>{t("memo.masonry")}</Option>
+              <Option value={"CONSTELLATION"}>{t("memo.constellation")}</Option>
             </Select>
           </div>
         </div>

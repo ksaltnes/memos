@@ -5,6 +5,7 @@ import { createRoot } from "react-dom/client";
 import { Toaster } from "react-hot-toast";
 import { RouterProvider } from "react-router-dom";
 import "./css/tailwind.css";
+import "./css/constellation.css";
 import "./i18n";
 import router from "./router";
 import { initialUserStore } from "./store/v2/user";
